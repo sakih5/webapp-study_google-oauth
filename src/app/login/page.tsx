@@ -7,7 +7,8 @@ export default function LoginPage() {
   const onClickGoogle = useCallback(async () => {
     const supabase = createClient();
     const origin =
-      typeof window !== 'undefined' ? window.location.origin : '';
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      (typeof window !== 'undefined' ? window.location.origin : '');
 
     await supabase.auth.signInWithOAuth({
       provider: 'google',
